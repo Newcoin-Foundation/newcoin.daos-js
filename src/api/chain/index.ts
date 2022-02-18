@@ -1,0 +1,149 @@
+import { GetTableRowsPayload } from "./../../interfaces/chain.interface";
+import { DAOPayload } from "./../../interfaces/dao.interface";
+import { ProposalPayload } from "./../../interfaces/proposal.interface";
+
+export default class ChainApi {
+  readonly nodeos_url: string;
+  readonly contract: string;
+  readonly fetch: any;
+
+  constructor(nodeos_url: string, contract: string, fetch: any) {
+    this.nodeos_url = nodeos_url;
+    this.contract = contract;
+    this.fetch = fetch;
+  }
+
+  async getTableRows(payload: GetTableRowsPayload): Promise<any> {
+    return await this.fetch(`${this.nodeos_url}/v1/chain/get_table_rows`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
+    });
+  }
+
+  async getDAOByID(opts: DAOPayload): Promise<any> {
+    return this.getTableRows({
+      json: true,
+      code: this.contract,
+      scope: this.contract,
+      table: "daos",
+      table_key: opts.id,
+      lower_bound: opts.id,
+      upper_bound: opts.id,
+      key_type: "i64",
+      index_position: "1",
+    });
+  }
+
+  async getDAOByOwner(opts: DAOPayload): Promise<any> {
+    return this.getTableRows({
+      json: true,
+      code: this.contract,
+      scope: this.contract,
+      table: "daos",
+      table_key: opts.owner,
+      lower_bound: opts.owner,
+      upper_bound: opts.owner,
+      key_type: "name",
+      index_position: "2",
+    });
+  }
+
+  async getDAOByDescription(opts: DAOPayload): Promise<any> {
+    return this.getTableRows({
+      json: true,
+      code: this.contract,
+      scope: this.contract,
+      table: "daos",
+      table_key: opts.descriptionSHA256,
+      lower_bound: opts.descriptionSHA256,
+      upper_bound: opts.descriptionSHA256,
+      key_type: "sha256",
+      index_position: "3",
+    });
+  }
+
+  async getProposalByID(opts: ProposalPayload): Promise<any> {
+    return this.getTableRows({
+        json: true,
+        code: this.contract,
+        scope: opts.daoID,
+        table: "proposals",
+        table_key: opts.id,
+        lower_bound: opts.id,
+        upper_bound: opts.id,
+        key_type: "i64",
+        index_position: "1",
+    });
+  }
+
+  async getProposalByProposer(opts: ProposalPayload): Promise<any> {
+    return this.getTableRows({
+        json: true,
+        code: this.contract,
+        scope: opts.daoID,
+        table: "proposals",
+        table_key: opts.proposer,
+        lower_bound: opts.proposer,
+        upper_bound: opts.proposer,
+        key_type: "name",
+        index_position: "2",
+    });
+  }
+
+  async getNFTProposalByID(opts: ProposalPayload): Promise<any> {
+    return this.getTableRows({
+        json: true,
+        code: this.contract,
+        scope: opts.daoID,
+        table: "nftproposals",
+        table_key: opts.id,
+        lower_bound: opts.id,
+        upper_bound: opts.id,
+        key_type: "i64",
+        index_position: "1",
+    });
+  }
+
+  async getNFTProposalByProposer(opts: ProposalPayload): Promise<any> {
+    return this.getTableRows({
+        json: true,
+        code: this.contract,
+        scope: opts.daoID,
+        table: "nftproposals",
+        table_key: opts.proposer,
+        lower_bound: opts.proposer,
+        upper_bound: opts.proposer,
+        key_type: "name",
+        index_position: "2",
+    });
+  }
+
+  async getRetireProposal(opts: ProposalPayload): Promise<any> {
+    return this.getTableRows({
+        json: true,
+        code: this.contract,
+        scope: opts.daoID,
+        table: "rtrproposals",
+        table_key: opts.id,
+        lower_bound: opts.id,
+        upper_bound: opts.id,
+        key_type: "i64",
+        index_position: "1",
+    });
+  }
+
+  async getRetireProposalByProposer(opts: ProposalPayload): Promise<any> {
+    return this.getTableRows({
+        json: true,
+        code: this.contract,
+        scope: opts.daoID,
+        table: "rtrproposals",
+        table_key: opts.proposer,
+        lower_bound: opts.proposer,
+        upper_bound: opts.proposer,
+        key_type: "name",
+        index_position: "2",
+    });
+  }
+}
