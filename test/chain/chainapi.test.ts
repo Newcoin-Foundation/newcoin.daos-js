@@ -1,6 +1,6 @@
 import { doesNotMatch } from "assert";
 import { expect } from "chai";
-import RpcApi from "../../src/api/index";
+import RpcApi from "../../src/api/chain";
 import { DAOPayload } from "../../src/interfaces/dao.interface";
 import { ProposalPayload } from "../../src/interfaces/proposal.interface";
 
@@ -13,7 +13,7 @@ describe("Chain API", () => {
   const exampleDAO: DAOPayload = {
     id: "0",
     owner: "nco",
-    description_sha256:
+    descriptionSHA256:
       "dfddb9d6cf44c9a15c672e186248035b782e1bbfdd332352311983c3ab635ca5",
   };
 
@@ -22,7 +22,7 @@ describe("Chain API", () => {
     daoID: "0",
     proposer: "nco",
   };
- 
+
   it("fetch DAO by id:" + exampleDAO.id, async () => {
     const response = await api.getDAOByID(exampleDAO);
     const json = await response.json();
@@ -60,34 +60,4 @@ describe("Chain API", () => {
     console.log(json);
     // expect(pool).to.deep.equal(examplePool);
   }).timeout(2000);
-
-  it("fetch NFT proposal by id:" + exampleProposal.id, async () => {
-    const response = await api.getNFTProposalByID(exampleProposal);
-    const json = await response.json();
-    console.log(json);
-    // expect(pool).to.deep.equal(examplePool);
-  }).timeout(2000);
-
-  it("fetch NFT proposal by proposer:" + exampleProposal.proposer, async () => {
-    const response = await api.getNFTProposalByProposer(exampleProposal);
-    const json = await response.json();
-    console.log(json);
-    // expect(pool).to.deep.equal(examplePool);
-  }).timeout(2000);
-
-  it("fetch retire proposal by id:" + exampleProposal.id, async () => {
-    const response = await api.getNFTProposalByID(exampleProposal);
-    const json = await response.json();
-    console.log(json);
-    // expect(pool).to.deep.equal(examplePool);
-  }).timeout(2000);
-
-  it("fetch retire proposal by proposer:" + exampleProposal.proposer, async () => {
-    const response = await api.getRetireProposalByProposer(exampleProposal);
-    const json = await response.json();
-    console.log(json);
-    // expect(pool).to.deep.equal(examplePool);
-  }).timeout(2000);
-
- 
 });

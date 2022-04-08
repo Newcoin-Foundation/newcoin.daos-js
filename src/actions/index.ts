@@ -15,13 +15,11 @@ export class ActionGenerator {
   async createDao(
     authorization: EosioAuthorizationObject[],
     owner: string,
-    description: string,
-    token: string
+    description: string
   ): Promise<EosioActionObject[]> {
     return this._pack(this.contract, authorization, "crtdao", {
       owner,
       description,
-      token
     });
   }
 
@@ -42,32 +40,70 @@ export class ActionGenerator {
       summary,
       url,
       vote_start,
-      vote_end
+      vote_end,
     });
   }
 
-  async createNFTProposal(
+  // async createNFTProposal(
+  //   authorization: EosioAuthorizationObject[],
+  //   proposer: string,
+  //   dao_id: number,
+  //   side: string,
+  //   asset_ids: number[],
+  //   price: string,
+  //   vote_start: string,
+  //   vote_end: string
+  // ): Promise<EosioActionObject[]> {
+  //   return this._pack(this.contract, authorization, "crtnftprl", {
+  //     proposer,
+  //     dao_id,
+  //     side,
+  //     asset_ids,
+  //     price,
+  //     vote_start,
+  //     vote_end
+  //   });
+  // }
+
+  async createStakeProposal(
     authorization: EosioAuthorizationObject[],
     proposer: string,
     dao_id: number,
-    side: string,
-    asset_ids: number[],
-    price: string,
+    to: string,
+    quantity: string,
     vote_start: string,
     vote_end: string
   ): Promise<EosioActionObject[]> {
-    return this._pack(this.contract, authorization, "crtnftprl", {
+    return this._pack(this.contract, authorization, "crtstkprp", {
       proposer,
       dao_id,
-      side,
-      asset_ids,
-      price,
+      to,
+      quantity,
       vote_start,
-      vote_end
+      vote_end,
     });
   }
 
-  async createRetireProposal(
+  async createInflateProposal(
+    authorization: EosioAuthorizationObject[],
+    proposer: string,
+    dao_id: number,
+    to: string,
+    quantity: string,
+    vote_start: string,
+    vote_end: string
+  ): Promise<EosioActionObject[]> {
+    return this._pack(this.contract, authorization, "crtinflprp", {
+      proposer,
+      dao_id,
+      to,
+      quantity,
+      vote_start,
+      vote_end,
+    });
+  }
+
+  async createDeflateProposal(
     authorization: EosioAuthorizationObject[],
     proposer: string,
     dao_id: number,
@@ -76,13 +112,112 @@ export class ActionGenerator {
     vote_start: string,
     vote_end: string
   ): Promise<EosioActionObject[]> {
-    return this._pack(this.contract, authorization, "crtretireprl", {
+    return this._pack(this.contract, authorization, "crtdeflprp", {
       proposer,
       dao_id,
-      from,
+      to,
       quantity,
       vote_start,
-      vote_end
+      vote_end,
+    });
+  }
+
+  async approveProposal(
+    authorization: EosioAuthorizationObject[],
+    dao_id: number,
+    proposal_id: number
+  ): Promise<EosioActionObject[]> {
+    return this._pack(this.contract, authorization, "appproposal", {
+      dao_id,
+      proposal_id,
+    });
+  }
+
+  async approveStakeProposal(
+    authorization: EosioAuthorizationObject[],
+    dao_id: number,
+    proposal_id: number
+  ): Promise<EosioActionObject[]> {
+    return this._pack(this.contract, authorization, "appstkprp", {
+      dao_id,
+      proposal_id,
+    });
+  }
+
+  async approveInflateProposal(
+    authorization: EosioAuthorizationObject[],
+    dao_id: number,
+    proposal_id: number
+  ): Promise<EosioActionObject[]> {
+    return this._pack(this.contract, authorization, "appinflprp", {
+      dao_id,
+      proposal_id,
+    });
+  }
+
+  async approveDeflateProposal(
+    authorization: EosioAuthorizationObject[],
+    dao_id: number,
+    proposal_id: number
+  ): Promise<EosioActionObject[]> {
+    return this._pack(this.contract, authorization, "appdeflprp", {
+      dao_id,
+      proposal_id,
+    });
+  }
+
+  async executeProposal(
+    authorization: EosioAuthorizationObject[],
+    dao_id: number,
+    proposal_id: number
+  ): Promise<EosioActionObject[]> {
+    return this._pack(this.contract, authorization, "execproposal", {
+      dao_id,
+      proposal_id,
+    });
+  }
+
+  async executeStakeProposal(
+    authorization: EosioAuthorizationObject[],
+    dao_id: number,
+    proposal_id: number
+  ): Promise<EosioActionObject[]> {
+    return this._pack(this.contract, authorization, "execstkprp", {
+      dao_id,
+      proposal_id,
+    });
+  }
+
+  async executeInflateProposal(
+    authorization: EosioAuthorizationObject[],
+    dao_id: number,
+    proposal_id: number
+  ): Promise<EosioActionObject[]> {
+    return this._pack(this.contract, authorization, "execinflprp", {
+      dao_id,
+      proposal_id,
+    });
+  }
+
+  async executeDeflateProposal(
+    authorization: EosioAuthorizationObject[],
+    dao_id: number,
+    proposal_id: number
+  ): Promise<EosioActionObject[]> {
+    return this._pack(this.contract, authorization, "execdeflprp", {
+      dao_id,
+      proposal_id,
+    });
+  }
+
+  async withdraw(
+    authorization: EosioAuthorizationObject[],
+    owner: string,
+    vote_id: number
+  ): Promise<EosioActionObject[]> {
+    return this._pack(this.contract, authorization, "withdraw", {
+      owner,
+      vote_id,
     });
   }
 
@@ -94,13 +229,12 @@ export class ActionGenerator {
     dao_id: string,
     proposal_id: string,
     option: string
-
   ): Promise<EosioActionObject[]> {
     return this._pack(this.token_contract, authorization, "transfer", {
       from: from,
       to: this.contract,
       quantity: quantity,
-      memo: `vote:${proposal_type};dao_id:${dao_id};proposal_id:${proposal_id};option:${option}`
+      memo: `vote:${proposal_type};dao_id:${dao_id};proposal_id:${proposal_id};option:${option}`,
     });
   }
 
