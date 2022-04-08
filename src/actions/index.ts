@@ -115,7 +115,7 @@ export class ActionGenerator {
     return this._pack(this.contract, authorization, "crtdeflprp", {
       proposer,
       dao_id,
-      to,
+      from,
       quantity,
       vote_start,
       vote_end,

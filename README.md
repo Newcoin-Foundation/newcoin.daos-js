@@ -21,6 +21,7 @@ Web library can be found in the [dist] folder
 const { ActionGenerator, ChainApi } = require("newcoindaos");
 // ES6 import
 import { ActionGenerator, ChainApi } from "newcoindaos"
+```
 
 ## Documentation
 
