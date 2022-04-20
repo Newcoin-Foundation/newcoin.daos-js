@@ -204,6 +204,34 @@ export default class ChainApi {
     });
   }
 
+  async getWhiteListProposal(opts: ProposalPayload): Promise<any> {
+    return this.getTableRows({
+        json: true,
+        code: this.contract,
+        scope: opts.daoID,
+        table: "whlistprpls",
+        table_key: opts.id,
+        lower_bound: opts.id,
+        upper_bound: opts.id,
+        key_type: "i64",
+        index_position: "1",
+    });
+  }
+
+  async getWhiteListProposalByProposer(opts: ProposalPayload): Promise<any> {
+    return this.getTableRows({
+        json: true,
+        code: this.contract,
+        scope: opts.daoID,
+        table: "whlistprpls",
+        table_key: opts.proposer,
+        lower_bound: opts.proposer,
+        upper_bound: opts.proposer,
+        key_type: "name",
+        index_position: "2",
+    });
+  }
+
   async getVote(opts: VotePayload): Promise<any> {
     return this.getTableRows({
         json: true,

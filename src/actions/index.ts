@@ -122,6 +122,25 @@ export class ActionGenerator {
     });
   }
 
+  async createWhiteListProposal(
+    authorization: EosioAuthorizationObject[],
+    proposer: string,
+    dao_id: number,
+    user: string,
+    quantity: string,
+    vote_start: string,
+    vote_end: string
+  ): Promise<EosioActionObject[]> {
+    return this._pack(this.contract, authorization, "crtwhltprp", {
+      proposer,
+      dao_id,
+      user,
+      quantity,
+      vote_start,
+      vote_end,
+    });
+  }
+
   async approveProposal(
     authorization: EosioAuthorizationObject[],
     dao_id: number,
@@ -166,6 +185,17 @@ export class ActionGenerator {
     });
   }
 
+  async approveWhiteListProposal(
+    authorization: EosioAuthorizationObject[],
+    dao_id: number,
+    proposal_id: number
+  ): Promise<EosioActionObject[]> {
+    return this._pack(this.contract, authorization, "appwhlprp", {
+      dao_id,
+      proposal_id,
+    });
+  }
+
   async executeProposal(
     authorization: EosioAuthorizationObject[],
     dao_id: number,
@@ -205,6 +235,17 @@ export class ActionGenerator {
     proposal_id: number
   ): Promise<EosioActionObject[]> {
     return this._pack(this.contract, authorization, "execdeflprp", {
+      dao_id,
+      proposal_id,
+    });
+  }
+
+  async executeWhiteListProposal(
+    authorization: EosioAuthorizationObject[],
+    dao_id: number,
+    proposal_id: number
+  ): Promise<EosioActionObject[]> {
+    return this._pack(this.contract, authorization, "execwhlprp", {
       dao_id,
       proposal_id,
     });
