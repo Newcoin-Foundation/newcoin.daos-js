@@ -20,15 +20,15 @@ Web library can be found in the [dist] folder
 // standard import
 const { ActionGenerator, ChainApi } = require("newcoindaos");
 // ES6 import
-import { ActionGenerator, ChainApi } from "newcoindaos"
+import { ActionGenerator, ChainApi } from "newcoindaos";
 ```
 
 ## Documentation
 
-### RpcApi
+### ChainApi
 
 Uses only native nodeos calls to chain api plugin.
 
 ### ActionGenerator
 
-Helper class to construct contract actions  which can be pushed on chain with eosjs.
+Helper class to construct contract actions which can be pushed on chain with eosjs.

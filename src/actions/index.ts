@@ -127,7 +127,6 @@ export class ActionGenerator {
     proposer: string,
     dao_id: number,
     user: string,
-    quantity: string,
     vote_start: string,
     vote_end: string
   ): Promise<EosioActionObject[]> {
@@ -135,7 +134,6 @@ export class ActionGenerator {
       proposer,
       dao_id,
       user,
-      quantity,
       vote_start,
       vote_end,
     });
