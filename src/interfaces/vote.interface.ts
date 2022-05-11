@@ -1,5 +1,5 @@
 export interface VotePayload {
-  id: string;
+  id?: string;
   owner: string;
   votingSHA256?: string;
 }
