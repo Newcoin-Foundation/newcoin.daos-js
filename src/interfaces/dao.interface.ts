@@ -3,3 +3,7 @@ export interface DAOPayload {
   owner?: string;
   descriptionSHA256?: string;
 }
+
+export interface WhitelistPayload {
+  id : string
+}
