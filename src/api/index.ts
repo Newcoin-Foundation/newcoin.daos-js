@@ -24,6 +24,7 @@ export class ChainApi {
     });
   }
 
+
   async getDAOByID(opts: DAOPayload): Promise<any> {
     return this.getTableRows({
       json: true,
@@ -63,6 +64,17 @@ export class ChainApi {
       upper_bound: opts.descriptionSHA256,
       key_type: "sha256",
       index_position: "3",
+    });
+  }
+
+  async getDAOWhiteList(opts: WhitelistPayload): Promise<any> {
+    return this.getTableRows({
+      json: true,
+      code: this.contract,
+      scope: opts.id as any,
+      table: "whitelist",
+      key_type: "name",
+      index_position: "1"
     });
   }
 
