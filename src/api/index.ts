@@ -3,6 +3,7 @@ import {
   DAOPayload,
   ProposalPayload,
   VotePayload,
+  WhitelistPayload
 } from "../interfaces";
 
 export class ChainApi {
