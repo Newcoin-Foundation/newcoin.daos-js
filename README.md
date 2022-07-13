@@ -9,7 +9,7 @@ This is a [Node.js](https://nodejs.org/en/) module available through the
 [`npm install` command](https://docs.npmjs.com/getting-started/installing-npm-packages-locally):
 
 ```sh
-npm i @newcoin-foundation/newcoin.daos-js
+npm install @newcoin-foundation/newcoin.daos-js
 ```
 
 ### Initialize
@@ -18,9 +18,9 @@ Web library can be found in the [dist] folder
 
 ```javascript
 // standard import
-const { ActionGenerator, ChainApi } = require("newcoindaos");
+const { ActionGenerator, ChainApi } = require("@newcoin-foundation/newcoin.daos-js");
 // ES6 import
-import { ActionGenerator, ChainApi } from "newcoindaos";
+import { ActionGenerator, ChainApi } from "@newcoin-foundation/newcoin.daos-js";
 ```
 
 ## Documentation

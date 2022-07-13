@@ -1,14 +1,13 @@
 import { doesNotMatch } from "assert";
 import { expect } from "chai";
-import RpcApi from "../../src/api/chain";
-import { DAOPayload } from "../../src/interfaces/dao.interface";
-import { ProposalPayload } from "../../src/interfaces/proposal.interface";
+import { ChainApi } from "../../src/api";
+import { DAOPayload, ProposalPayload } from "../../src/interfaces";
 
 // tslint:disable-next-line:no-var-requires
 const fetch = require("node-fetch");
 
 describe("Chain API", () => {
-  const api = new RpcApi("https://testnet.newcoin.org", "daos.nco", fetch);
+  const api = new ChainApi("https://testnet.newcoin.org", "daos.nco", fetch);
 
   const exampleDAO: DAOPayload = {
     id: "0",

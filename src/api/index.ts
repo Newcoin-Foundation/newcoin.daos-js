@@ -1,9 +1,11 @@
-import { GetTableRowsPayload } from "./../../interfaces/chain.interface";
-import { DAOPayload } from "./../../interfaces/dao.interface";
-import { ProposalPayload } from "./../../interfaces/proposal.interface";
-import { VotePayload } from "./../../interfaces/vote.interface";
+import {
+  GetTableRowsPayload,
+  DAOPayload,
+  ProposalPayload,
+  VotePayload,
+} from "../interfaces";
 
-export default class ChainApi {
+export class ChainApi {
   readonly nodeos_url: string;
   readonly contract: string;
   readonly fetch: any;
@@ -66,29 +68,29 @@ export default class ChainApi {
 
   async getProposalByID(opts: ProposalPayload): Promise<any> {
     return this.getTableRows({
-        json: true,
-        code: this.contract,
-        scope: opts.daoID,
-        table: "proposals",
-        table_key: opts.id,
-        lower_bound: opts.id,
-        upper_bound: opts.id,
-        key_type: "i64",
-        index_position: "1",
+      json: true,
+      code: this.contract,
+      scope: opts.daoID,
+      table: "proposals",
+      table_key: opts.id,
+      lower_bound: opts.id,
+      upper_bound: opts.id,
+      key_type: "i64",
+      index_position: "1",
     });
   }
 
   async getProposalByProposer(opts: ProposalPayload): Promise<any> {
     return this.getTableRows({
-        json: true,
-        code: this.contract,
-        scope: opts.daoID,
-        table: "proposals",
-        table_key: opts.proposer,
-        lower_bound: opts.proposer,
-        upper_bound: opts.proposer,
-        key_type: "name",
-        index_position: "2",
+      json: true,
+      code: this.contract,
+      scope: opts.daoID,
+      table: "proposals",
+      table_key: opts.proposer,
+      lower_bound: opts.proposer,
+      upper_bound: opts.proposer,
+      key_type: "name",
+      index_position: "2",
     });
   }
 
@@ -122,127 +124,127 @@ export default class ChainApi {
 
   async getStakeProposal(opts: ProposalPayload): Promise<any> {
     return this.getTableRows({
-        json: true,
-        code: this.contract,
-        scope: opts.daoID,
-        table: "stakeprpls",
-        table_key: opts.id,
-        lower_bound: opts.id,
-        upper_bound: opts.id,
-        key_type: "i64",
-        index_position: "1",
+      json: true,
+      code: this.contract,
+      scope: opts.daoID,
+      table: "stakeprpls",
+      table_key: opts.id,
+      lower_bound: opts.id,
+      upper_bound: opts.id,
+      key_type: "i64",
+      index_position: "1",
     });
   }
 
   async getStakeProposalByProposer(opts: ProposalPayload): Promise<any> {
     return this.getTableRows({
-        json: true,
-        code: this.contract,
-        scope: opts.daoID,
-        table: "stakeprpls",
-        table_key: opts.proposer,
-        lower_bound: opts.proposer,
-        upper_bound: opts.proposer,
-        key_type: "name",
-        index_position: "2",
+      json: true,
+      code: this.contract,
+      scope: opts.daoID,
+      table: "stakeprpls",
+      table_key: opts.proposer,
+      lower_bound: opts.proposer,
+      upper_bound: opts.proposer,
+      key_type: "name",
+      index_position: "2",
     });
   }
 
   async getInflateProposal(opts: ProposalPayload): Promise<any> {
     return this.getTableRows({
-        json: true,
-        code: this.contract,
-        scope: opts.daoID,
-        table: "inflateprpls",
-        table_key: opts.id,
-        lower_bound: opts.id,
-        upper_bound: opts.id,
-        key_type: "i64",
-        index_position: "1",
+      json: true,
+      code: this.contract,
+      scope: opts.daoID,
+      table: "inflateprpls",
+      table_key: opts.id,
+      lower_bound: opts.id,
+      upper_bound: opts.id,
+      key_type: "i64",
+      index_position: "1",
     });
   }
 
   async getInflateProposalByProposer(opts: ProposalPayload): Promise<any> {
     return this.getTableRows({
-        json: true,
-        code: this.contract,
-        scope: opts.daoID,
-        table: "inflateprpls",
-        table_key: opts.proposer,
-        lower_bound: opts.proposer,
-        upper_bound: opts.proposer,
-        key_type: "name",
-        index_position: "2",
+      json: true,
+      code: this.contract,
+      scope: opts.daoID,
+      table: "inflateprpls",
+      table_key: opts.proposer,
+      lower_bound: opts.proposer,
+      upper_bound: opts.proposer,
+      key_type: "name",
+      index_position: "2",
     });
   }
 
   async getDeflateProposal(opts: ProposalPayload): Promise<any> {
     return this.getTableRows({
-        json: true,
-        code: this.contract,
-        scope: opts.daoID,
-        table: "deflateprpls",
-        table_key: opts.id,
-        lower_bound: opts.id,
-        upper_bound: opts.id,
-        key_type: "i64",
-        index_position: "1",
+      json: true,
+      code: this.contract,
+      scope: opts.daoID,
+      table: "deflateprpls",
+      table_key: opts.id,
+      lower_bound: opts.id,
+      upper_bound: opts.id,
+      key_type: "i64",
+      index_position: "1",
     });
   }
 
   async getDeflateProposalByProposer(opts: ProposalPayload): Promise<any> {
     return this.getTableRows({
-        json: true,
-        code: this.contract,
-        scope: opts.daoID,
-        table: "deflateprpls",
-        table_key: opts.proposer,
-        lower_bound: opts.proposer,
-        upper_bound: opts.proposer,
-        key_type: "name",
-        index_position: "2",
+      json: true,
+      code: this.contract,
+      scope: opts.daoID,
+      table: "deflateprpls",
+      table_key: opts.proposer,
+      lower_bound: opts.proposer,
+      upper_bound: opts.proposer,
+      key_type: "name",
+      index_position: "2",
     });
   }
 
   async getWhiteListProposal(opts: ProposalPayload): Promise<any> {
     return this.getTableRows({
-        json: true,
-        code: this.contract,
-        scope: opts.daoID,
-        table: "whlistprpls",
-        table_key: opts.id,
-        lower_bound: opts.id,
-        upper_bound: opts.id,
-        key_type: "i64",
-        index_position: "1",
+      json: true,
+      code: this.contract,
+      scope: opts.daoID,
+      table: "whlistprpls",
+      table_key: opts.id,
+      lower_bound: opts.id,
+      upper_bound: opts.id,
+      key_type: "i64",
+      index_position: "1",
     });
   }
 
   async getWhiteListProposalByProposer(opts: ProposalPayload): Promise<any> {
     return this.getTableRows({
-        json: true,
-        code: this.contract,
-        scope: opts.daoID,
-        table: "whlistprpls",
-        table_key: opts.proposer,
-        lower_bound: opts.proposer,
-        upper_bound: opts.proposer,
-        key_type: "name",
-        index_position: "2",
+      json: true,
+      code: this.contract,
+      scope: opts.daoID,
+      table: "whlistprpls",
+      table_key: opts.proposer,
+      lower_bound: opts.proposer,
+      upper_bound: opts.proposer,
+      key_type: "name",
+      index_position: "2",
     });
   }
 
   async getVote(opts: VotePayload): Promise<any> {
     return this.getTableRows({
-        json: true,
-        code: this.contract,
-        scope: opts.owner,
-        table: "votes",
-        table_key: opts.id,
-        lower_bound: opts.id,
-        upper_bound: opts.id,
-        key_type: "i64",
-        index_position: "1",
+      json: true,
+      code: this.contract,
+      scope: opts.owner,
+      table: "votes",
+      table_key: opts.id,
+      lower_bound: opts.id,
+      upper_bound: opts.id,
+      key_type: "i64",
+      index_position: "1",
     });
   }
 

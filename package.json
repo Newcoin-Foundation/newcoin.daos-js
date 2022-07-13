@@ -1,8 +1,12 @@
 {
   "name": "@newcoin-foundation/newcoin.daos-js",
-  "version": "2.0.2",
+  "version": "2.0.5",
   "description": "",
   "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build:npm": "tsc",
     "build:web": "webpack --config webpack.prod.js",

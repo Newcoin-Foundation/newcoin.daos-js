@@ -1,5 +1,3 @@
-import { ActionGenerator } from './actions';
-import ChainApi from './api/chain';
-import * as Interfaces from './interfaces'
-
-export { ActionGenerator, ChainApi, Interfaces};
+export * from "./actions";
+export * from "./api";
+export * from "./interfaces";
